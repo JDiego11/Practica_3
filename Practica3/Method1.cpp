@@ -17,18 +17,29 @@ char *Char2Bin(int Char)            //Recibimos el entero ASCII correspondiente 
 
 char *Text2Bin(string File_Name)
 {
-    /*Variables que usaremos para la conversión a binario del texto*/
+    ///Variables que usaremos para la conversión a binario del texto
     unsigned long long Text_Size, Bin_Txt_Size;     //Tamaño del texto original / tamaño del texto en binario
-    Text_Size = File_Lenght(File_Name);     //Con la función File_Length tenemos el tamaño del texto original
-    Bin_Txt_Size = Text_Size * 8;       //Al multiplicar el tamaño del texto por 8, tendremos el tamaño del arreglo de la conversión
-    char *Text; //= new char[Text_Size];       //Arreglo para el texto original
+    Text_Size = File_Lenght(File_Name);             //Con la función File_Length tenemos el tamaño del texto original
+    Bin_Txt_Size = Text_Size * 8;                   //Al multiplicar el tamaño del texto por 8, tendremos el tamaño del arreglo de la conversión
+    char *Text = new char[Text_Size];               //Arreglo para el texto original
     char *CharInBin = new char[8];
     char *TextInBin = new char[Bin_Txt_Size];       //Arreglo para el texto en binario
+    int pos;
     Text = ReadFile_Method1(File_Name);
 
+    ///Ciclo para guardar en un arreglo el texto pero en binario
+    for(unsigned long long i=0; i<Text_Size; i++) {
+        CharInBin = Char2Bin(Text[i]);          //Llamamos la func. que convierte un caracter en binario y almacenamos ese binario
+        for (int j=0; j<8; j++) {
+            pos = (i*8) + j;                    //Posición que tendrá el arreglo con el texto en binario
+            TextInBin[pos] = CharInBin[j];      //Almacenamos el cada carac. (en binario) en el arreglo del texto (en binario)
+        }
+    }
 
-
-    //delete Text;      //Liberamos la memoria ocupada por el texto original ya que no la usaremos más
+    ///Liberamos la memoria ocupada por el texto original ya que no la usaremos más
+    delete[] Text;
     delete[] CharInBin;
+
+    ///Retorno de la función
     return TextInBin;
 }
