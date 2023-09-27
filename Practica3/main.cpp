@@ -1,9 +1,10 @@
-#include <iostream>
-
-using namespace std;
+#include "ManejoArchivos.h"
 
 int main()
 {
-    cout << "Hello world!" << endl;
+    char *Info;
+    Info = ReadFile_Method1("Information.txt");
+    cout << Info << endl;
+    cout << File_Lenght("Information.txt") << endl;
     return 0;
 }
