@@ -21,7 +21,7 @@ char *Text2Bin(string File_Name)
     unsigned long long Text_Size, Bin_Txt_Size;     //Tamaño del texto original / tamaño del texto en binario
     Text_Size = File_Lenght(File_Name);             //Con la función File_Length tenemos el tamaño del texto original
     Bin_Txt_Size = Text_Size * 8;                   //Al multiplicar el tamaño del texto por 8, tendremos el tamaño del arreglo de la conversión
-    char *Text = new char[Text_Size];               //Arreglo para el texto original
+    char *Text;// = new char[Text_Size];               //Arreglo para el texto original
     char *CharInBin = new char[8];
     char *TextInBin = new char[Bin_Txt_Size];       //Arreglo para el texto en binario
     int pos;
@@ -42,4 +42,16 @@ char *Text2Bin(string File_Name)
 
     ///Retorno de la función
     return TextInBin;
+}
+
+char *Code_1(string File_Name, int seed) {
+    unsigned long long Text_Size;       //Tamaño del texto original
+    Text_Size = File_Lenght(File_Name);
+    char *TextInBin;                    //Texto en binario
+    TextInBin = Text2Bin(File_Name);
+
+    char *Code_Text = new char[Text_Size * 8];
+
+    delete[] TextInBin;
+    return Code_Text;
 }
