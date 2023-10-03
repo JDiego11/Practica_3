@@ -37,3 +37,20 @@ char *ReadFile_Method1(string file_name)
     File.close();
     return Text;
 }
+string ReadFile_Method2(string file_name) {
+    string Text;
+    unsigned long long Array_Size;
+    ifstream File;
+    File.open(file_name, ios::in | ios::binary);    // Abrimos el archivo
+    if (File.is_open()) {
+        File.seekg(0, ios::end);  // Colocamos el puntero al final del archivo para obtener el tamaño
+        Array_Size = File.tellg(); // Obtenemos el tamaño del archivo
+        File.seekg(0, ios::beg);  // Volvemos a colocar el puntero al principio del archivo
+        Text.resize(Array_Size);  // Redimensionamos el string para acomodar los datos del archivo
+        File.read(&Text[0], Array_Size); // Guardamos los datos en el string
+        File.close();            // Cerramos el archivo
+    } else {
+        cout << "No se pudo abrir el archivo" << endl;
+    }
+    return Text;
+}
