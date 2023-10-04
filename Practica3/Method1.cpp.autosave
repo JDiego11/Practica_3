@@ -118,39 +118,14 @@ char *DeCode_1(string File_Name, int seed)
         else Decode_Text[i] = '0';
     }
 
-    /*for (int j=seed; j<(2*seed); j++) {
-        if (cont0 == cont1) {
-            if(Code_Text[j] == '0') Decode_Text[j] = '1';
-            else Decode_Text[j] = '0';
-        }
-        ///Si hay más 0 que 1
-        else if (cont0 < cont1) {
-            cont_aux++;
-            if (cont_aux == 2) {
-                if(Code_Text[j] == '0') Decode_Text[j] = '1';
-                else Decode_Text[j] = '0';
-                cont_aux = 0;
-            }
-            else Decode_Text[j] = Code_Text[j];
-        }
-        ///Si hay más 1 que 0
-        else {
-            cont_aux++;
-            if (cont_aux == 3) {
-                if(Code_Text[j] == '0') Decode_Text[j] = '1';
-                else Decode_Text[j] = '0';
-                cont_aux = 0;
-            }
-            else Decode_Text[j] = Code_Text[j];
-        }
-    }*/
-
     for(unsigned long long i=(seed); i<(Text_Size*8); i+=seed) {
         cont0 = 0;
         cont1 = 0;
         cont_aux=0;                 //Contador para saber en qué bit hacer el cambio
         /*Ciclo para contar la cantidad de 0 y 1 que hay en cada grupo del tamaño de la semilla*/
         for (unsigned long long j=(i-seed); j<i; j++) {
+            ///A diferencia de la función para codificar, aquí comparamos con el grupo de bits
+            /// anterior pero del arreglo ya decodificado para que se cumpla 
             if (Decode_Text[j] == '0') cont0++;
             else cont1++;
         }

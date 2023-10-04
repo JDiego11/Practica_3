@@ -10,7 +10,7 @@ using namespace std;
 //Función que crea un archivo
 void CreateFile(string) ;
 
-//Función para leer el archivo y traer su contenido en un arreglo char para el método 1
+//Funciones para leer el archivo y traer su contenido en un arreglo char para el método 1
 unsigned long long File_Lenght(string);         //Almacena la longitud de un archivo
 char *ReadFile_Method1(string);
 
@@ -18,4 +18,6 @@ char *ReadFile_Method1(string);
 //string ReadFile_Method2(string);
 
 //Función para escribir en un archivo
+void WriteFIle_Method1(string, string, int);
+
 #endif // MANEJOARCHIVOS_H

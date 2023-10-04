@@ -1,4 +1,5 @@
 #include "ManejoArchivos.h"
+#include "Method1.h"
 
 void CreateFile(string name/*, string path*/)                    //Creamos/abrimos el archivo en la carpeta del proyecto
 {                                               //Porque no le dimos una dirección
@@ -36,4 +37,21 @@ char *ReadFile_Method1(string file_name)
 
     File.close();
     return Text;
+}
+
+void WriteFIle_Method1(string Origin_File, string file_name, int seed)
+{
+    fstream File;
+    File.open(file_name, ios::out);
+
+    unsigned long long Cod_size;
+    Cod_size = File_Lenght(Origin_File) * 8;
+
+    char *info = Code_1(Origin_File, seed);
+
+    for (unsigned long long i=0; i<Cod_size; i++) {
+        File << info[i];
+    }
+
+    File.close();
 }
